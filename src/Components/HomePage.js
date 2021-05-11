@@ -5,13 +5,21 @@ import axios from "axios";
 
 import { render } from '@testing-library/react';
 
+window.id = 0;
 class HomePage extends Component {
 
-    state = {
-        movies: [],
-        keyword: '',
-        nominees: [],
-        loading: false
+    constructor(props) {
+        super(props);
+        this.state = {
+            movies: [],
+            keyword: '',
+            nominees: [],
+            loading: false
+        }
+    }
+
+    componentDidMount() {
+        
     }
     
     fetchData = async keyword => {
@@ -34,11 +42,18 @@ class HomePage extends Component {
         this.fetchData(e.target.value)
     }
 
-    // addNominees = (name, year) => {
-    //     this.setState({
-    //         nominees: this.state.nominees.concat({name, year})
-    //     })
-    // }
+    addNominees = (name, year) => {
+        const entry = {name: name,year: year, id: window.id++}
+        this.state.nominees.push(entry)
+        this.setState({ nominees: this.state.nominees})
+    }
+
+    removeNominees(id) {
+        const remainder = this.state.nominees.filter((entry) => {
+            if(entry.id !== id) return entry;
+        });
+        this.setState({nominees: remainder})
+    }
     render() {
         console.log(this.state)
         return (
@@ -46,7 +61,7 @@ class HomePage extends Component {
           <div className="App">
             <h1> The Shopppies</h1>
             <div className="searchBar">
-                <h4>Movie title</h4>
+                <h5>Movie title</h5>
                 <input
                 value={this.state.value}
                 onChange={e => this.onChangeHandler(e)}
@@ -56,10 +71,11 @@ class HomePage extends Component {
             <Results 
                 resultList={this.state.movies} 
                 keyword={this.state.keyword} 
-                nominees={this.state.nominees}
+                add={this.addNominees.bind(this)}
             />
             <Nominations
                 nominees={this.state.nominees}
+                remove={this.removeNominees.bind(this)}
             />
           </div>
         );

@@ -1,26 +1,17 @@
 import React from 'react';
 
 
-const Results = (props) => {
-
-    const list = props.resultList
-    const word = props.keyword
-    const nominees = props.nominees
-
-    const onClickHandler = (name, year) => {
-        nominees.push({name, year})
-    }
-    console.log(nominees)
+const Results = ({resultList, keyword,add}) => {
 
     return (
         <div>
-            <h6>Results for "{word}"</h6>
+            <h4>Results for "{keyword}"</h4>
             <div>
-                { list.map((e) => (
+                { resultList.map((e) => (
                     <div key={e.imdbID}>
-                        <h5>{e.Title}</h5>
-                        <h5>{e.Year}</h5>
-                        <button className="add" onClick={() => onClickHandler(e.Title, e.Year)}>
+                        <h6>{e.Title}</h6>
+                        <h6>{e.Year}</h6>
+                        <button className="add" onClick={() => {add(e.Title, e.Year)}}>
                             Nominate
                         </button>
                     </div>

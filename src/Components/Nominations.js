@@ -1,23 +1,17 @@
 import React from 'react';
 
 
-const Nominations = (props) => {
-
-    const nominees = props.nominees
-
-    const onClickHandler = (name, year) => {
-        nominees.push({name, year})
-    }
+const Nominations = ({nominees, remove}) => {
 
     return (
         <div>
-            <h6>Nominations</h6>
+            <h4>Nominations</h4>
             <div>
                 { nominees.map((e) => (
-                    <div key={e.imdbID}>
-                        <h5>{e.Title}</h5>
-                        <h5>{e.Year}</h5>
-                        <button className="add" onClick={() => onClickHandler(e.Title, e.Year)}>
+                    <div key={e.id}>
+                        <h6>{e.name}</h6>
+                        <h6>{e.year}</h6>
+                        <button className="add" onClick={() => {remove(e.id)}}>
                             Remove
                         </button>
                     </div>
