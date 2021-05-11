@@ -17,10 +17,6 @@ class HomePage extends Component {
             loading: false
         }
     }
-
-    componentDidMount() {
-        
-    }
     
     fetchData = async keyword => {
         this.setState({loading: true})
@@ -59,24 +55,29 @@ class HomePage extends Component {
         return (
             
           <div className="App">
-            <h1> The Shopppies</h1>
+            <h2> The Shopppies</h2>
             <div className="searchBar">
-                <h5>Movie title</h5>
+                <h5 className="searchTitle">Movie title</h5>
                 <input
                 value={this.state.value}
                 onChange={e => this.onChangeHandler(e)}
                 placeholder="Search Movies"
                 />  
             </div>
-            <Results 
-                resultList={this.state.movies} 
-                keyword={this.state.keyword} 
-                add={this.addNominees.bind(this)}
-            />
-            <Nominations
-                nominees={this.state.nominees}
-                remove={this.removeNominees.bind(this)}
-            />
+            <div className="sections">
+                <Results 
+                    className="section1"
+                    resultList={this.state.movies} 
+                    keyword={this.state.keyword} 
+                    add={this.addNominees.bind(this)}
+                />
+                <Nominations
+                    className="section2"
+                    nominees={this.state.nominees}
+                    remove={this.removeNominees.bind(this)}
+                />
+            </div>
+           
           </div>
         );
     }

@@ -1,5 +1,6 @@
 .App {
   text-align: center;
+  
 }
 
 .App-logo {
@@ -37,14 +38,48 @@
   }
 }
 
-.movielist {
-  display: flex;
-  flex-direction: column;
-  flex-wrap: wrap;
-  justify-content: space-around;
-  height: 1300px;
+h2 {
+  text-align: left;
 }
 
-.card {
-  width: 30%;
+.searchBar {
+  margin: 5px 0 5px 0;
+  padding: 7px 7px 7px 7px;
+  background-color: white;
+  display: flex;
+  flex-direction: column;
 }
+
+.searchBar .searchTitle {
+  text-align: left;
+  margin: 1px 0 1px 0;
+}
+
+.sections {
+  display:flex;
+  flex-direction: row;
+}
+
+.sections .movies {
+  background-color: white;
+  width: 50%;
+  margin: 6px 5px 0 0;
+}
+.movieCard {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  margin: 8px 0 8px 0;
+}
+
+.sections .nomination {
+  background-color: white;
+  width: 50%;
+  margin: 6px 0 0 5px;
+}
+
+.button {
+  height: 30%;
+}
+
